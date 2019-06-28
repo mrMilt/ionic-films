@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Favorites
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content text-center>
+    <ion-grid align-items-center>
+        <ion-row>
+          <ion-col size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12" *ngFor="let peli of favorites">
+              <ion-card>    
+                  <div text-right>
+                      <ion-button color="danger" (click)="deleteOfFavorites(peli)">
+                          <ion-icon name="trash"></ion-icon>
+                      </ion-button>
+                  </div>
+                  
+                  <ion-card-header>                                                
+                    <ion-card-title style="cursor: pointer">{{peli.original_title}}</ion-card-title>
+                    <ion-card-subtitle>{{peli.release_date}}</ion-card-subtitle>
+                  </ion-card-header>
+                
+                  <ion-card-content padding text-justify>
+                      <ion-img src="{{urlBaseImg}}{{peli.poster_path}}"></ion-img>  
+                      <br>
+                      {{peli.overview}}           
+                  </ion-card-content>    
+                  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+                      <ion-fab-button (click)="verMas(peli)" color="success">
+                        <ion-icon name="add"></ion-icon>
+                      </ion-fab-button>
+                  </ion-fab>      
+                    </ion-card>  
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>

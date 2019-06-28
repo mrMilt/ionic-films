@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Search
+    </ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+      <ion-searchbar placeholder="Busca tu película favotita"animated (ionChange)="searchFilm($event)"></ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content align-items-center>
+  <ion-list>
+    <ion-item *ngFor="let peli of films" (click)="verDetalles($event)">
+        <ion-label id="{{peli.id}}">{{peli.original_title}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12">
+            <ion-card *ngIf="show">  
+                <div text-right>
+                    <ion-button color="warning" (click)="addToFavorites(peli)">
+                        <ion-icon name="star"></ion-icon>
+                    </ion-button>
+                </div>    
+              <ion-card-header>                                                
+                <ion-card-title style="cursor: pointer">{{peli.original_title}}</ion-card-title>
+                <ion-card-subtitle>{{peli.release_date}}</ion-card-subtitle>
+              </ion-card-header>
+            
+              <ion-card-content padding text-justify>
+                  <ion-img src="{{urlBaseImg}}{{peli.poster_path}}"></ion-img>  
+                  <br>
+                  {{peli.overview}}           
+              </ion-card-content>    
+              <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+                  <ion-fab-button (click)="verMas(peli)" color="success">
+                    <ion-icon name="add"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>            
+                </ion-card>   
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
